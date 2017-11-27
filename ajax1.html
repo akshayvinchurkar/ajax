@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>ajax 2 with json</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <button type="button" id="button1">Get Users</button>
+        <br><br>
+        <div id="users">
+
+        </div>
+
+        <script>
+            document.getElementById('button1').addEventListener('click', loadusers);
+
+            function loadusers() {
+                // first create new object from XMLHttpRequest class
+                var xhr = new XMLHttpRequest();
+
+                // open the request with open method and give parameter like request type, url, async true
+                xhr.open('GET', 'ajax1.json', true);
+
+                // omload function detect the status and return the response
+                xhr.onload = function() {
+                    if(this.status == 200) {
+                        var users = JSON.parse(this.responseText);
+                        var output = '';
+
+                        for(var i in users) {
+                            output += '<ul>' +
+                            '<li> ID:' +users[i].id+ '</li>' + 
+                            '<li> Name:' + users[i].name + '</li>' + 
+                            '<li> Email:' + users[i].email + '</li>' + 
+                            '</ul>';
+                        }
+
+                        document.getElementById('users').innerHTML = output;
+                    }
+                }
+                
+                // send actually initialise the request
+                xhr.send();
+            }
+        </script>
+    </body>
+</html>
