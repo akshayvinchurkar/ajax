@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Ajax with vanilla javascript</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <button type="button" id="ajax">ajax magic</button>
+        <p id="filetext"></p>
+
+        <script type="text/javascript">
+            var button = document.getElementById('ajax');
+            button.addEventListener('click', ajaxmagic);
+
+            function ajaxmagic() {
+                var xhr = new XMLHttpRequest();
+
+                xhr.open('GET', 'test.txt', true);
+
+                xhr.onload = function() {
+                    if (this.status == 200) {
+                        document.getElementById('filetext').innerHTML = this.responseText;
+                    }
+                }
+
+                xhr.send();
+            }
+        </script>
+    </body>
+</html>
