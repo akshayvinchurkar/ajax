@@ -8,9 +8,7 @@
     <body>
         <button type="button" id="button1">Get Users</button>
         <br><br>
-        <div id="users">
-
-        </div>
+        <div id="users"></div>
 
         <script>
             document.getElementById('button1').addEventListener('click', loadusers);
@@ -39,7 +37,7 @@
                         document.getElementById('users').innerHTML = output;
                     }
                 }
-                
+
                 // send actually initialise the request
                 xhr.send();
             }
